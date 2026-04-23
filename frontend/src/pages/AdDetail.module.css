@@ -1,0 +1,290 @@
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.grid {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.mainCol {
+    flex: 1;
+    min-width: 0; /* allows child to truncate if needed */
+}
+
+.sideCol {
+    flex: 0 0 400px;
+}
+
+/* Gallery styling */
+.galleryCard {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+.mainImageContainer {
+    width: 100%;
+    height: 500px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.noImage {
+    color: white;
+    opacity: 0.5;
+}
+
+.thumbnailStrip {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    background: white;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+.activeThumb {
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+.detailsCard, .priceCard, .sellerCard {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+.detailsCard h2 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.description p {
+    color: var(--text);
+    margin-bottom: 10px;
+    white-space: pre-line;
+}
+
+/* Right column */
+.priceHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0;
+}
+
+.iconBtn {
+    background: transparent;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.metaRow {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.specsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.specLabel {
+    color: var(--text-light);
+}
+
+.specValue {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Seller Card */
+.sellerCard h3 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.sellerHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sellerName {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.memberSince {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.sellerStats {
+    display: flex;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stat:first-child {
+    border-right: 1px solid var(--border);
+}
+
+.stat strong {
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.stat span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.chatBtn {
+    width: 100%;
+    background-color: var(--accent);
+    color: var(--primary);
+    height: 50px;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    margin-bottom: 16px;
+}
+
+.chatBtn:hover:not(:disabled) {
+    background-color: #1fc9c1;
+}
+
+.chatBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.sellerFooterLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.sellerFooterLinks a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.reportBtn {
+    background: transparent;
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reportBtn:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        flex-direction: column;
+    }
+    
+    .sideCol {
+        flex: none;
+        width: 100%;
+        order: -1; /* Move price/seller to top on mobile */
+    }
+
+    .mainImageContainer {
+        height: 350px;
+    }
+}

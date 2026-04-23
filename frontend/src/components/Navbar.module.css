@@ -1,0 +1,309 @@
+.header {
+    background-color: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-sm);
+    background-color: rgba(242, 244, 245, 0.95);
+    backdrop-filter: blur(8px);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -1px;
+}
+
+.searchBar {
+    flex-grow: 1;
+    display: flex;
+    height: 48px;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: white;
+}
+
+.locationInputGrp {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-right: 1px solid var(--border);
+    flex: 0 0 250px;
+}
+
+.searchIcon {
+    color: var(--text-light);
+    margin-right: 8px;
+}
+
+.locationInputGrp input, .keywordInputGrp input {
+    border: none;
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.keywordInputGrp {
+    display: flex;
+    flex-grow: 1;
+}
+
+.keywordInputGrp input {
+    padding: 0 16px;
+}
+
+.searchBtn {
+    background-color: var(--primary);
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.searchBtn:hover {
+    background-color: #00444b;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.loginLink {
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.loginLink:hover {
+    color: var(--text);
+}
+
+.sellBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--cta);
+    color: var(--primary);
+    padding: 0 20px;
+    height: 44px;
+    border-radius: 24px;
+    font-weight: 700;
+    border: 4px solid white;
+    box-shadow: 0 0 0 1px var(--cta);
+    transition: var(--transition);
+}
+
+.sellBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.userMenu {
+    position: relative;
+}
+
+.avatarWrap {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.avatarWrap:hover {
+    border-color: var(--accent);
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 250px;
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-hover);
+    overflow: hidden;
+}
+
+.dropdownHeader {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.dropdownName {
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--primary);
+}
+
+.dropdownViewProfile {
+    font-size: 0.85rem;
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.dropdownLinks {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownLinks a, .logoutBtn {
+    padding: 12px 16px;
+    color: var(--text);
+    text-align: left;
+    font-size: 0.95rem;
+    background: transparent;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.dropdownLinks a:hover, .logoutBtn:hover {
+    background: var(--bg);
+    color: var(--primary);
+}
+
+.adminLink {
+    color: var(--danger) !important;
+    font-weight: 600;
+}
+
+.mobileSearchWrapper {
+    display: none;
+}
+
+.bottomNav {
+    display: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .locationInputGrp {
+        flex: 0 0 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .searchBar {
+        display: none;
+    }
+    
+    .actions {
+        gap: 16px;
+    }
+    
+    .sellBtn {
+        display: none;
+    }
+
+    .mobileSearchWrapper {
+        display: block;
+        padding: 0 16px 12px;
+    }
+
+    .mobileSearch {
+        display: flex;
+        background: white;
+        border: 2px solid var(--primary);
+        border-radius: var(--radius-sm);
+        height: 44px;
+    }
+
+    .mobileSearch input {
+        flex-grow: 1;
+        border: none;
+        padding: 0 16px;
+    }
+
+    .mobileSearch button {
+        background: transparent;
+        width: 44px;
+        color: var(--primary);
+    }
+
+    /* Bottom Navigation Bar Setup */
+    .bottomNav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        height: 60px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        z-index: 100;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .navItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-light);
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+
+    .navActive {
+        color: var(--primary);
+    }
+
+    .navItemSell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: var(--text);
+        position: relative;
+        top: -10px;
+    }
+
+    .sellCircle {
+        background: var(--cta);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        color: var(--primary);
+    }
+    
+    /* Hide some login items on mobile header if needed, but avatar is ok */
+    .loginLink {
+        font-size: 0.9rem;
+    }
+}

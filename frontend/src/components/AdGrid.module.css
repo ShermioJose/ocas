@@ -1,0 +1,59 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.skeletonWrapper {
+    background-color: var(--card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonImg {
+    width: 100%;
+    padding-top: 75%;
+    border-radius: 0;
+}
+
+.skeletonPrice {
+    width: 40%;
+    height: 24px;
+    margin: 16px 16px 8px;
+}
+
+.skeletonTitle {
+    width: 80%;
+    height: 16px;
+    margin: 0 16px 16px;
+}
+
+.skeletonMeta {
+    width: 90%;
+    height: 12px;
+    margin: auto 16px 16px;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}

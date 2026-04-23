@@ -1,0 +1,371 @@
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 24px;
+    min-height: calc(100vh - 160px);
+}
+
+.stepperWrap {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 6px;
+    background: var(--bg);
+    width: 100%;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s ease-in-out;
+}
+
+.formCard {
+    padding: 32px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.backBtn {
+    background: transparent;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.backBtn:hover {
+    color: var(--text);
+}
+
+.header h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.stepIndicator {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.stepPane {
+    animation: fadeIn 0.4s ease;
+    min-height: 400px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stepPane h3 {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+/* Step 1 Settings */
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.catBox, .subCatBox {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.catBox:hover, .subCatBox:hover {
+    border-color: var(--primary);
+    background: var(--bg);
+}
+
+.subCatBox.selected {
+    border-color: var(--accent);
+    background: rgba(35, 229, 219, 0.1);
+    color: var(--primary);
+}
+
+.changeCatBtn {
+    background: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.subCatList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* Step 2 Form */
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.formGroup input, .formGroup textarea, .formGroup select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+}
+
+.formGroup input:focus, .formGroup textarea:focus, .formGroup select:focus {
+    border-color: var(--primary);
+}
+
+.rowTwo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Step 3 Upload */
+.hintText {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.fileInputHidden {
+    display: none;
+}
+
+.uploadBox {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--bg);
+    transition: var(--transition);
+}
+
+.uploadBox:hover {
+    border-color: var(--accent);
+    background: rgba(35, 229, 219, 0.05);
+}
+
+.uploadBox span {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.imageCount {
+    margin: 16px 0;
+    font-weight: 600;
+    color: var(--text);
+    text-align: right;
+}
+
+.previewGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.previewBox {
+    aspect-ratio: 1;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.previewBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coverBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 47, 52, 0.8);
+    color: white;
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 4px 0;
+    font-weight: 600;
+}
+
+.removeImgBtn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Step 4 Preview */
+.previewSummary {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+}
+
+.previewHeaderRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+}
+
+.previewSummaryImg {
+    width: 120px;
+    height: 90px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+.previewSummaryMeta h4 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.previewPrice {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.grayBox {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    margin-top: 10px;
+    white-space: pre-line;
+}
+
+/* Step 5 Success */
+.successPane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.successPane h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--primary);
+}
+
+.successPane p {
+    color: var(--text-light);
+    max-width: 400px;
+}
+
+.successBtn {
+    background: var(--primary);
+    color: white;
+    padding: 12px 32px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 24px;
+}
+
+/* Footer Actions */
+.footerActions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nextBtn {
+    background: var(--primary);
+    color: white;
+    padding: 12px 32px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.nextBtn:hover:not(:disabled) {
+    background: #001f24;
+}
+
+.nextBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .formCard {
+        padding: 20px;
+    }
+
+    .header h2 {
+        position: static;
+        transform: none;
+    }
+
+    .categoryGrid, .subCatList {
+        grid-template-columns: 1fr;
+    }
+
+    .rowTwo {
+        grid-template-columns: 1fr;
+    }
+
+    .previewGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

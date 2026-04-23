@@ -1,0 +1,23 @@
+# Secrets
+backend/.env
+socket-server/.env
+frontend/.env
+
+# Dependencies
+backend/vendor/
+frontend/node_modules/
+socket-server/node_modules/
+
+# Build
+frontend/dist/
+
+# Laravel cache & logs
+backend/bootstrap/cache/*.php
+backend/storage/logs/*.log
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+
+# Docker
+mysql_data/
+.docker/mysql/

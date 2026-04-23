@@ -1,0 +1,44 @@
+.emptyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-light);
+    width: 100%;
+}
+
+.iconCircle {
+    width: 100px;
+    height: 100px;
+    background-color: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.message {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.actionBtn {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.actionBtn:hover {
+    background-color: #00444b;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
