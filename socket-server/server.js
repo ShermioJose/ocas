@@ -191,6 +191,15 @@ app.get('/online-users', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    app: 'OCAS Socket Server',
+    message: 'Socket.io server is running.',
+    connections: io.engine.clientsCount
+  });
+});
+
 // REST Standard Health Check Ping
 app.get('/health', (req, res) => {
   res.json({
@@ -200,7 +209,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`[*] Node+Socket.io server running on http://localhost:${PORT}`);
 });
