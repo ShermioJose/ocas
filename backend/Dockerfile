@@ -16,12 +16,12 @@ RUN composer install --optimize-autoloader --no-dev
 
 COPY .docker/nginx.conf /etc/nginx/sites-available/default
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY .docker/start.sh /usr/local/bin/start.sh
 
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-RUN php artisan key:generate --force
+RUN chmod +x /usr/local/bin/start.sh
 
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/local/bin/start.sh"]
