@@ -26,7 +26,9 @@ export const AuthProvider = ({ children }) => {
                     const res = await api.get('/auth/me');
                     if(res.data.success) {
                         setUser(res.data.user);
-                        localStorage.setItem('user', JSON.stringify(res.data.user));
+                        if (res.data.user) {
+                            localStorage.setItem('user', JSON.stringify(res.data.user));
+                        }
                     }
                 } catch (e) {
                     // Axios interceptor will handle 401
@@ -43,7 +45,9 @@ export const AuthProvider = ({ children }) => {
     const login = (userData, jwtToken) => {
         setUser(userData);
         setToken(jwtToken);
-        localStorage.setItem('user', JSON.stringify(userData));
+        if (userData) {
+            localStorage.setItem('user', JSON.stringify(userData));
+        }
         localStorage.setItem('token', jwtToken);
     };
 
