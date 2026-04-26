@@ -111,7 +111,7 @@ class ConversationController extends Controller
         // Security logic allowing auth user OR socket proxy via secret header
         $isSocketOrigin = false;
         if ($request->header('X-Socket-Secret')) {
-            if ($request->header('X-Socket-Secret') !== env('SOCKET_SERVER_URL', 'default_secret')) {
+            if ($request->header('X-Socket-Secret') !== env('SOCKET_SECRET')) {
                 // If it's not matching socket block, allow fallback to auth checks below if token provided
                 // For safety, let's just use SOCKET_SERVER_URL mapping for the secret as placeholders.
             } else {
