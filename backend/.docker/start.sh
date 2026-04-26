@@ -8,6 +8,8 @@ php artisan migrate --force
 php artisan db:seed --force || true
 
 # Cache config
+php artisan config:clear
+php artisan cache:clear
 php artisan config:cache
 php artisan route:cache
 
