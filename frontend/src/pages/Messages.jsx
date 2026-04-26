@@ -196,7 +196,7 @@ const Messages = () => {
                                         onClick={() => setActiveConv(conv)}
                                     >
                                         <div className={styles.convAvatar}>
-                                            <img src={conv.other_user.avatar_url || 'https://via.placeholder.com/50'} alt="" />
+                                            <img src={conv.other_user.avatar_url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e2e8f0'/%3E%3Ctext x='20' y='25' text-anchor='middle' font-size='16' fill='%2394a3b8'%3E%3F%3C/text%3E%3C/svg%3E"} alt="" />
                                             {conv.unread_count > 0 && <span className={styles.unreadBadge}>{conv.unread_count}</span>}
                                         </div>
                                         <div className={styles.convInfo}>
@@ -227,7 +227,7 @@ const Messages = () => {
                                             <ArrowLeft size={24} />
                                         </button>
                                     )}
-                                    <img src={activeConv.other_user.avatar_url || 'https://via.placeholder.com/40'} alt="" className={styles.chatAvatar} />
+                                    <img src={activeConv.other_user.avatar_url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23e2e8f0'/%3E%3Ctext x='20' y='25' text-anchor='middle' font-size='16' fill='%2394a3b8'%3E%3F%3C/text%3E%3C/svg%3E"} alt="" className={styles.chatAvatar} />
                                     <div className={styles.chatHeaderInfo}>
                                         <h3>{activeConv.other_user.name}</h3>
                                         <p className={styles.chatHeaderAd}>{activeConv.ad.title}</p>
