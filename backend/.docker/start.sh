@@ -1,5 +1,6 @@
 #!/bin/bash
 chmod -R 777 /var/www/storage /var/www/bootstrap/cache
+rm -f /var/www/storage/logs/laravel.log
 set -e
 
 # Run migrations
