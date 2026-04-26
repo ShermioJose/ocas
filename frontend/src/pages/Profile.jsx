@@ -29,8 +29,11 @@ const Profile = () => {
         try {
             const res = await api.put('/profile', formData);
             if (res.data.success) {
-                setUser(res.data.user);
-                localStorage.setItem('user', JSON.stringify(res.data.user));
+                const updated = res.data.user || res.data.profile;
+                if (updated) {
+                    setUser(updated);
+                    localStorage.setItem('user', JSON.stringify(updated));
+                }
                 toast.success('Profile updated successfully');
                 setEditing(false);
             }
