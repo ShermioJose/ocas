@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod -R 777 /var/www/storage /var/www/bootstrap/cache
 set -e
 
 # Run migrations
