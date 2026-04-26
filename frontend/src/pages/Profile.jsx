@@ -56,8 +56,9 @@ const Profile = () => {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             if (res.data.success) {
-                setUser(res.data.user);
-                localStorage.setItem('user', JSON.stringify(res.data.user));
+                const updated = { ...user, avatar_url: res.data.avatar_url };
+                setUser(updated);
+                localStorage.setItem('user', JSON.stringify(updated));
                 toast.success('Avatar updated');
             }
         } catch (error) {
