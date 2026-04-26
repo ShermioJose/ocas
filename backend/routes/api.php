@@ -121,4 +121,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:api', 'admin']], funct
     // Reports
     Route::get('/reports', [AdminController::class, 'reports']);
     Route::post('/reports/{id}/resolve', [AdminController::class, 'resolveReport']);
+    Route::post('/reports/{id}/dismiss', [AdminController::class, 'dismissReport']);
+    Route::post('/users/{id}/suspend', [AdminController::class, 'suspendUser']);
 });

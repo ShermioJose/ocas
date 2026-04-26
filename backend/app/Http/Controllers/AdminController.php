@@ -90,6 +90,24 @@ class AdminController extends Controller
         ]);
     }
 
+    public function suspendUser($id)
+    {
+        $user = User::findOrFail($id);
+        
+        if ($user->id === auth()->id()) {
+            return response()->json(['success' => false, 'message' => 'Cannot suspend yourself'], 403);
+        }
+
+        $user->is_blocked = true;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User suspended successfully',
+            'user' => $user->fresh()
+        ]);
+    }
+
     public function destroyUser($id)
     {
         $user = User::findOrFail($id);
@@ -228,5 +246,14 @@ class AdminController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Report resolved']);
+    }
+
+    public function dismissReport($id)
+    {
+        $report = Report::findOrFail($id);
+        $report->status = 'dismissed';
+        $report->save();
+
+        return response()->json(['success' => true, 'message' => 'Report dismissed']);
     }
 }

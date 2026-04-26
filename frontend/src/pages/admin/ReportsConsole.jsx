@@ -37,6 +37,44 @@ const ReportsConsole = () => {
         }
     };
 
+    const handleDeleteAd = async (adId) => {
+        if (!window.confirm("Are you sure you want to delete this ad permanently?")) return;
+        try {
+            const res = await api.delete(`/admin/ads/${adId}`);
+            if (res.data.success) {
+                toast.success("Ad deleted permanently");
+                fetchReports();
+            }
+        } catch (e) {
+            toast.error("Failed to delete ad");
+        }
+    };
+
+    const handleSuspendUser = async (userId) => {
+        if (!window.confirm("Are you sure you want to suspend this user?")) return;
+        try {
+            const res = await api.post(`/admin/users/${userId}/suspend`);
+            if (res.data.success) {
+                toast.success("User suspended successfully");
+                fetchReports();
+            }
+        } catch (e) {
+            toast.error("Failed to suspend user");
+        }
+    };
+
+    const handleDismiss = async (id) => {
+        try {
+            const res = await api.post(`/admin/reports/${id}/dismiss`);
+            if (res.data.success) {
+                toast.success("Report dismissed");
+                fetchReports();
+            }
+        } catch (e) {
+            toast.error("Failed to dismiss report");
+        }
+    };
+
     if (loading) return <Loader />;
 
     return (
@@ -62,12 +100,27 @@ const ReportsConsole = () => {
                                 <td><a href={`/ads/${report.ad?.id}`} target="_blank" rel="noreferrer" style={{color:'var(--primary)', fontWeight:600}}>{report.ad?.title}</a></td>
                                 <td>{report.reporter?.name}</td>
                                 <td style={{maxWidth: '300px'}}>{report.reason}</td>
-                                <td><span className={`badge ${report.status === 'open' ? 'rejected' : 'active'}`}>{report.status}</span></td>
-                                <td>
-                                    {report.status === 'open' && (
-                                        <button className={`${styles.actionBtn} ${styles.approve}`} onClick={() => handleResolve(report.id)}>
-                                            Mark Resolved
-                                        </button>
+                                <td><span className={`badge ${report.status === 'pending' ? 'rejected' : 'active'}`}>{report.status}</span></td>
+                                <td style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
+                                    {report.status === 'pending' && (
+                                        <>
+                                            <button className={`${styles.actionBtn} ${styles.approve}`} onClick={() => handleResolve(report.id)}>
+                                                Mark Resolved
+                                            </button>
+                                            <button className={`${styles.actionBtn}`} style={{backgroundColor: '#9ca3af', color: '#fff'}} onClick={() => handleDismiss(report.id)}>
+                                                Dismiss
+                                            </button>
+                                            {report.ad && (
+                                                <button className={`${styles.actionBtn}`} style={{backgroundColor: '#ef4444', color: '#fff'}} onClick={() => handleDeleteAd(report.ad.id)}>
+                                                    Delete Ad
+                                                </button>
+                                            )}
+                                            {report.ad?.user_id && (
+                                                <button className={`${styles.actionBtn}`} style={{backgroundColor: '#f97316', color: '#fff'}} onClick={() => handleSuspendUser(report.ad.user_id)}>
+                                                    Suspend User
+                                                </button>
+                                            )}
+                                        </>
                                     )}
                                 </td>
                             </tr>
