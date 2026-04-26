@@ -43,10 +43,18 @@ const PostAd = () => {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        if (images.length + files.length > 10) {
+        const validFiles = files.filter(file => {
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error("File size must be less than 5MB");
+                return false;
+            }
+            return true;
+        });
+
+        if (images.length + validFiles.length > 10) {
             return toast.error("Maximum 10 images allowed");
         }
-        setImages([...images, ...files]);
+        setImages([...images, ...validFiles]);
     };
 
     const removeImage = (index) => {

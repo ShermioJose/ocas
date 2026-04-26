@@ -62,11 +62,19 @@ const EditAd = () => {
 
     const handleNewImageChange = (e) => {
         const files = Array.from(e.target.files);
-        const totalCount = existingImages.length + newImages.length + files.length;
+        const validFiles = files.filter(file => {
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error("File size must be less than 5MB");
+                return false;
+            }
+            return true;
+        });
+
+        const totalCount = existingImages.length + newImages.length + validFiles.length;
         if (totalCount > 10) {
             return toast.error("Maximum 10 images allowed total");
         }
-        setNewImages([...newImages, ...files]);
+        setNewImages([...newImages, ...validFiles]);
     };
 
     const removeNewImage = (index) => {
