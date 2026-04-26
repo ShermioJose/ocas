@@ -22,7 +22,7 @@
         </div>
         <div class="content">
             <p>Hello Admin,</p>
-            <p>A new report has been submitted by user <strong>{{ $reporterName }}</strong> regarding the ad "<strong>{{ $adTitle }}</strong>".</p>
+            <p>A new report has been submitted by user <strong>{{ $reporterName }}</strong> regarding the ad "<a href="{{ env('FRONTEND_URL') }}/ads/{{ $adId }}" style="color: #f59e0b; text-decoration: none; font-weight: bold;">{{ $adTitle }}</a>".</p>
             <p><strong>Reason provided:</strong></p>
             
             <div class="reason-box">

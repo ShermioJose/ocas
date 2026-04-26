@@ -24,7 +24,7 @@
             <p>Hello {{ $ad->user->name }},</p>
             <p>Great news! Your ad "<strong>{{ $ad->title }}</strong>" has been reviewed and approved by our team.</p>
             <p>It is now live on the OCAS marketplace and visible to buyers worldwide.</p>
-            <a href="{{ env('APP_URL') }}/ads/{{ $ad->id }}" class="btn">View Your Ad</a>
+            <a href="{{ env('FRONTEND_URL') }}/ads/{{ $ad->id }}" class="btn">View Your Ad</a>
         </div>
         <div class="footer">
             &copy; {{ date('Y') }} OCAS Marketplace. All rights reserved.

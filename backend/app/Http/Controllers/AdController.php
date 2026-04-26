@@ -303,7 +303,7 @@ class AdController extends Controller
 
         try {
             \Illuminate\Support\Facades\Mail::to('admin@ocas.com')
-                ->send(new \App\Mail\NewReportMail($ad->title, auth()->user()->name, $request->reason));
+                ->send(new \App\Mail\NewReportMail($ad->id, $ad->title, auth()->user()->name, $request->reason));
         } catch (\Exception $e) {
             // Ignore mail failures so it doesn't crash the API response
         }

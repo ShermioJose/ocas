@@ -12,12 +12,14 @@ class NewReportMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $adId;
     public $adTitle;
     public $reporterName;
     public $reason;
 
-    public function __construct($adTitle, $reporterName, $reason)
+    public function __construct($adId, $adTitle, $reporterName, $reason)
     {
+        $this->adId = $adId;
         $this->adTitle = $adTitle;
         $this->reporterName = $reporterName;
         $this->reason = $reason;
