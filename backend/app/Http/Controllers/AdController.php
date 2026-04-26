@@ -301,6 +301,13 @@ class AdController extends Controller
             'status' => 'pending'
         ]);
 
+        try {
+            \Illuminate\Support\Facades\Mail::to('admin@ocas.com')
+                ->send(new \App\Mail\NewReportMail($ad->title, auth()->user()->name, $request->reason));
+        } catch (\Exception $e) {
+            // Ignore mail failures so it doesn't crash the API response
+        }
+
         return response()->json(['success' => true, 'message' => 'Ad reported successfully']);
     }
 }

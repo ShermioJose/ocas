@@ -101,6 +101,11 @@ class AdminController extends Controller
         $user->is_blocked = true;
         $user->save();
 
+        try {
+            \Illuminate\Support\Facades\Mail::to($user->email)
+                ->send(new \App\Mail\ModerationActionMail($user->name, 'Account Suspended'));
+        } catch (\Exception $e) {}
+
         return response()->json([
             'success' => true,
             'message' => 'User suspended successfully',
@@ -203,7 +208,10 @@ class AdminController extends Controller
 
     public function destroyAd($id)
     {
-        $ad = Ad::findOrFail($id);
+        $ad = Ad::with('user')->findOrFail($id);
+        $userEmail = $ad->user->email ?? null;
+        $userName = $ad->user->name ?? null;
+        $adTitle = $ad->title;
 
         foreach ($ad->images as $image) {
             if ($image->cloudinary_public_id) {
@@ -212,6 +220,13 @@ class AdminController extends Controller
         }
 
         $ad->delete();
+
+        if ($userEmail) {
+            try {
+                \Illuminate\Support\Facades\Mail::to($userEmail)
+                    ->send(new \App\Mail\ModerationActionMail($userName, 'Ad Deleted', $adTitle));
+            } catch (\Exception $e) {}
+        }
 
         return response()->json(['success' => true, 'message' => 'Ad deleted completely']);
     }
@@ -231,7 +246,7 @@ class AdminController extends Controller
 
     public function resolveReport(Request $request, $id)
     {
-        $report = Report::findOrFail($id);
+        $report = Report::with('ad.user')->findOrFail($id);
         $report->status = 'resolved';
         $report->save();
 
@@ -245,14 +260,28 @@ class AdminController extends Controller
             $ad->delete();
         }
 
+        if ($report->ad && $report->ad->user) {
+            try {
+                \Illuminate\Support\Facades\Mail::to($report->ad->user->email)
+                    ->send(new \App\Mail\ModerationActionMail($report->ad->user->name, 'Report Resolved', $report->ad->title));
+            } catch (\Exception $e) {}
+        }
+
         return response()->json(['success' => true, 'message' => 'Report resolved']);
     }
 
     public function dismissReport($id)
     {
-        $report = Report::findOrFail($id);
+        $report = Report::with('ad.user')->findOrFail($id);
         $report->status = 'dismissed';
         $report->save();
+
+        if ($report->ad && $report->ad->user) {
+            try {
+                \Illuminate\Support\Facades\Mail::to($report->ad->user->email)
+                    ->send(new \App\Mail\ModerationActionMail($report->ad->user->name, 'Report Dismissed', $report->ad->title));
+            } catch (\Exception $e) {}
+        }
 
         return response()->json(['success' => true, 'message' => 'Report dismissed']);
     }

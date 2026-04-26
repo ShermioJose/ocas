@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
+
+class NewReportMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $adTitle;
+    public $reporterName;
+    public $reason;
+
+    public function __construct($adTitle, $reporterName, $reason)
+    {
+        $this->adTitle = $adTitle;
+        $this->reporterName = $reporterName;
+        $this->reason = $reason;
+    }
+
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: 'New Ad Report Submitted - OCAS',
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.new-report',
+        );
+    }
+}
