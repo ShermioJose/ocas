@@ -276,7 +276,7 @@ const Messages = () => {
                                         }}
                                         rows="1"
                                     ></textarea>
-                                    <button type="submit" disabled={!inputMsg.trim()}>
+                                    <button type="submit" onClick={handleSendMessage} disabled={!inputMsg.trim()}>
                                         <Send size={20} />
                                     </button>
                                 </form>
