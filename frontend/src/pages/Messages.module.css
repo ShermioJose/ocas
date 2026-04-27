@@ -360,6 +360,7 @@
 @media (max-width: 768px) {
     .container {
         padding: 0;
+        padding-bottom: 60px;
         height: calc(100dvh - 60px); /* minus bottom nav */
     }
     .layout {
