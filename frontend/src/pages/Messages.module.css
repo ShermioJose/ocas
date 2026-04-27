@@ -378,9 +378,13 @@
     }
     .inputArea {
         padding: 12px 16px;
-        padding-bottom: max(72px, calc(60px + env(safe-area-inset-bottom)));
-        position: sticky;
+        position: fixed;
         bottom: 60px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: white;
+        z-index: 99;
     }
     .chatPanel {
         width: 100%;
